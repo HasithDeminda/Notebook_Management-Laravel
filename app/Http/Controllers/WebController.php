@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class WebController extends Controller
 {
@@ -17,7 +18,13 @@ class WebController extends Controller
     }
     public function addnote()
     {
-        return view('pages.addnote');
+
+        // get categories from database
+        $categories = DB::table('category')
+            ->where('status', '=', 1)
+            ->get()->toArray();
+
+        return view('pages.addnote', compact('categories'));
     }
 
     public function viewnotes()
