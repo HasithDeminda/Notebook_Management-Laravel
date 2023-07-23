@@ -37,6 +37,8 @@
     <link rel="shortcut icon" href="assets/images/favicon.png" />
     <link rel="stylesheet" href="assets/css/cardview.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/pagination.css" />
+    <link rel="stylesheet" href="assets/css/categorycard.css" />
+    <link rel="stylesheet" href="assets/css/modal.css" />
   </head>
   <body>
     <div class="container-scroller">
@@ -95,57 +97,8 @@
                 <i class="icon-bell mx-0"></i>
                 <span class="count"></span>
               </a>
-              <div
-                class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
-                aria-labelledby="notificationDropdown"
-              >
-                <p class="mb-0 font-weight-normal float-left dropdown-header">
-                  Notifications
-                </p>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-success">
-                      <i class="ti-info-alt mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal">
-                      Application Error
-                    </h6>
-                    <p class="font-weight-light small-text mb-0 text-muted">
-                      Just now
-                    </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-warning">
-                      <i class="ti-settings mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal">Settings</h6>
-                    <p class="font-weight-light small-text mb-0 text-muted">
-                      Private message
-                    </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-info">
-                      <i class="ti-user mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal">
-                      New user registration
-                    </h6>
-                    <p class="font-weight-light small-text mb-0 text-muted">
-                      2 days ago
-                    </p>
-                  </div>
-                </a>
-              </div>
+              
+                
             </li>
             <li class="nav-item nav-profile dropdown">
               <a
@@ -154,27 +107,11 @@
                 data-toggle="dropdown"
                 id="profileDropdown"
               >
-                <img src="assets/images/faces/face28.jpg" alt="profile" />
+                <img src="https://res.cloudinary.com/desnqqj6a/image/upload/v1683887268/User-Profile-PNG-High-Quality-Image_mwetdc.png" alt="profile" />
               </a>
-              <div
-                class="dropdown-menu dropdown-menu-right navbar-dropdown"
-                aria-labelledby="profileDropdown"
-              >
-                <a class="dropdown-item">
-                  <i class="ti-settings text-primary"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item">
-                  <i class="ti-power-off text-primary"></i>
-                  Logout
-                </a>
-              </div>
+              
             </li>
-            <li class="nav-item nav-settings d-none d-lg-flex">
-              <a class="nav-link" href="#">
-                <i class="icon-ellipsis"></i>
-              </a>
-            </li>
+        
           </ul>
           <button
             class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"

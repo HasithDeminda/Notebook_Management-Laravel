@@ -19,4 +19,24 @@ class WebController extends Controller
     {
         return view('pages.addnote');
     }
+
+    public function viewnotes()
+    {
+        return view('pages.viewnotes');
+    }
+
+    public function drafts()
+    {
+        return view('pages.drafts');
+    }
+
+    public function trash()
+    {
+        return view('pages.trash');
+    }
+
+    public function editnote()
+    {
+        return view('pages.editnote');
+    }
 }
