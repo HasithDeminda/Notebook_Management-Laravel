@@ -21,8 +21,7 @@ Route::redirect('/', '/dashboard');
 Route::get('/dashboard', [WebController::class, 'dashboard']) -> name('dashboard');
 Route::get('/favourites', [WebController::class, 'favourites']) -> name('favourites');
 Route::get('/addnote', [WebController::class, 'addnote']) -> name('addnote');
-Route::get('/viewnotes', [WebController::class, 'viewnotes']) -> name('viewnotes');
+Route::get('/dashboard/viewnotes/{id}', [WebController::class, 'viewnotes']) -> name('viewnotes');
 Route::get('/drafts', [WebController::class, 'drafts']) -> name('drafts');
 Route::get('/trash', [WebController::class, 'trash']) -> name('trash');
 Route::get('/editnote', [WebController::class, 'editnote']) -> name('editnote');
-
