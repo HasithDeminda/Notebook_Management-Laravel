@@ -1,16 +1,16 @@
 @include('layout.header')
 @include('layout.sidebar')
 <div class="main-panel">
-          <div class="content-wrapper">
+<div class="content-wrapper">
             <div class="row">
               <div class="col-md-12 grid-margin">
                 <div class="row">
                   <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                    <h3 class="font-weight-bold">Your Favourites ❤️</h3>
+                    <h3 class="font-weight-bold">Archived Notes</h3>
                     <h6 class="font-weight-normal mb-0">
-                        You can add notes to your favourites by clicking on the heart icon on the top right corner of the note.
+                        These are the notes that you have archived.
                       <span class="text-primary">
-                        3 Favorite Notes
+                     5 Archived Notes
                       </span>
                     </h6>
                   </div>
@@ -32,15 +32,11 @@
                       </p>
                       <!-- ----Add edit and delete and favourites buttons here---- -->
                         <div class="row">
-                            <div class="col-md-6">
-                            <button class="btn btn-primary btn-sm">Edit</button>
-                            <button class="btn btn-danger btn-sm" 
-                            onclick="return confirm('Are you sure you want to delete this note?')"
-                            >Delete</button>
+                            <div class="col-md-6 d-flex" style="width: 100%">
+                            <button class="btn btn-primary btn-sm">Republish</button>
+                            <button class="btn btn btn-outline-primary ml-2 btn-sm">Republish as draft</button>
                             </div>
-                            <div class="col-md-6">
-                            <button class="btn btn-primary btn-sm float-right" >Unfavourite</button>
-                            </div>
+                           
                     </div>
                   </div>
                 </article>

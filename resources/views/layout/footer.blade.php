@@ -28,6 +28,7 @@
     <script src="assets/js/typeahead.js"></script>
     <script src="assets/js/select2.js"></script>
     <script src="assets/js/pagination.js"></script>
+    <script src="assets/js/modal.js"></script>
 
     <!-- End custom js for this page-->
   </body>
