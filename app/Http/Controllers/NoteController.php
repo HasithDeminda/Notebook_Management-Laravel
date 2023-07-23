@@ -36,6 +36,7 @@ class NoteController extends Controller
             ]);
 
             if ($newNote) {
+                //send response after 5 seconds
                 return back()->with('success',"Note added successfully..!");
             } else {
                 return back()->with('error',"Something went wrong..!")->withInput();
@@ -58,7 +59,76 @@ class NoteController extends Controller
             }
         }
 
-
-
     }
+
+    public function deletenote($id)
+    {
+
+        // $deleteNote = DB::table('note')->where('id', '=', $id)->delete();
+        //update status to 0
+        $deleteNote = DB::table('note')
+            ->where('id', '=', $id)
+            ->update(['note_status' => 0]);
+
+        if ($deleteNote) {
+            return back()->with('success', "Note deleted successfully..!");
+        } else {
+            return back()->with('error', "Something went wrong..!")->withInput();
+        }
+    }
+
+        public function restorepublish($id)
+    {
+        //update status to 1
+        $restoredNote = DB::table('note')
+            ->where('id', '=', $id)
+            ->update(['note_status' => 1]);
+
+        if ($restoredNote) {
+            return back()->with('success', "Note restored successfully..!");
+        } else {
+            return back()->with('error', "Something went wrong..!")->withInput();
+        }
+    }
+
+    public function restoredraft($id){
+   //update status to 1
+   $restoredNote = DB::table('note')
+   ->where('id', '=', $id)
+   ->update(['note_status' => 2]);
+
+        if ($restoredNote) {
+        return back()->with('success', "Note restored successfully..!");
+        } else {
+        return back()->with('error', "Something went wrong..!")->withInput();
+        }
+    }
+
+    public function addfavorite($id) {
+        // dd($id);
+        //update status to 1
+        $restoredNote = DB::table('note')
+        ->where('id', '=', $id)
+        ->update(['is_favorite' => 1]);
+
+             if ($restoredNote) {
+             return back()->with('success', "Note added to favorites..!");
+             } else {
+             return back()->with('error', "Something went wrong..!")->withInput();
+             }
+    }
+
+    public function addUnfavorite($id){
+        //update status to 1
+        $restoredNote = DB::table('note')
+        ->where('id', '=', $id)
+        ->update(['is_favorite' => 0]);
+
+             if ($restoredNote) {
+             return back()->with('success', "Note removed from favorites..!");
+             } else {
+             return back()->with('error', "Something went wrong..!")->withInput();
+             }
+    }
+
 }
