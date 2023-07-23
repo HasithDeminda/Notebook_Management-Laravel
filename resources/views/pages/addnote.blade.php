@@ -39,7 +39,7 @@
                             You can use this form to add a note to your notebook!
                         </p>
 
-                        <form class="forms-sample" action="{{ route('addnote') }}" method="POST">
+                        <form class="forms-sample" id="myform" action="{{ route('addnote') }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="exampleInputName1">Note Title</label>
@@ -94,7 +94,11 @@
                             </div>
                             <div class="form-group"></div>
                             <button type="submit" class="btn btn-primary mr-2" name="action" value="publish">
-                                Save and Publish
+                                Save and Publish &nbsp;
+                                <div class="spinner-container" style="display:none">
+                                    <i class="btn-icon-prepend fa fa-spinner fa-spin"></i>
+                                </div>
+
                             </button>
                             <button type="submit" class="btn btn-outline-primary mr-2" name="action" value="draft">
                                 Save as Draft
@@ -111,6 +115,15 @@
 @include('layout.footer')
 
 <script>
+$(document).ready(function() {
+
+    $(".spinner-container").hide();
+    $("#myform").submit(function() {
+        $(".spinner-container").css("display", "inline");
+    });
+
+
+});
 document.addEventListener('DOMContentLoaded', function() {
     const Alert = document.getElementById('alert-message');
     // Hide the success alert after 2 seconds
