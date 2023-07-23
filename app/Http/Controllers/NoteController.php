@@ -37,10 +37,8 @@ class NoteController extends Controller
 
             if ($newNote) {
                 //send response after 5 seconds
-                sleep(1);
                 return back()->with('success',"Note added successfully..!");
             } else {
-                sleep(1);
                 return back()->with('error',"Something went wrong..!")->withInput();
             }
 
@@ -55,15 +53,11 @@ class NoteController extends Controller
             ]);
 
             if ($newNote) {
-                sleep(1);
                 return back()->with('success',"Note successfully as draft..!");
             } else {
-                sleep(1);
                 return back()->with('error',"Something went wrong..!")->withInput();
             }
         }
-
-
 
     }
 }

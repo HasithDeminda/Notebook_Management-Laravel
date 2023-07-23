@@ -94,10 +94,7 @@
                             </div>
                             <div class="form-group"></div>
                             <button type="submit" class="btn btn-primary mr-2" name="action" value="publish">
-                                Save and Publish &nbsp;
-                                <div class="spinner-container" style="display:none">
-                                    <i class="btn-icon-prepend fa fa-spinner fa-spin"></i>
-                                </div>
+                                Save and Publish
 
                             </button>
                             <button type="submit" class="btn btn-outline-primary mr-2" name="action" value="draft">
@@ -116,12 +113,6 @@
 
 <script>
 $(document).ready(function() {
-
-    $(".spinner-container").hide();
-    $("#myform").submit(function() {
-        $(".spinner-container").css("display", "inline");
-    });
-
 
 });
 document.addEventListener('DOMContentLoaded', function() {
