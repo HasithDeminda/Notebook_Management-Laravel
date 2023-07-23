@@ -2,6 +2,16 @@
 @include('layout.sidebar')
 <div class="main-panel">
     <div class="content-wrapper">
+        <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+            aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                <li class="breadcrumb-item" aria-current="page">Published Notes</li>
+                <li class="breadcrumb-item active" aria-current="page">{{ $category->category_name }}</li>
+
+            </ol>
+        </nav>
+
         @if(Session::has('success'))
         <div class="alert alert-success alert-dismissible fade show" id="alert-message">
             {{ Session::get('success') }}
@@ -82,7 +92,7 @@
 
 
 
-            <dialog id=" demo-modal" class="dialog" style="
+            <!-- <dialog id=" demo-modal" class="dialog" style="
     width: 100%;
     height: 80%;
     overflow: auto;
@@ -142,174 +152,8 @@
                             fill="currentColor" />
                     </svg>
                 </button>
-            </dialog>
-            <!-- <dialog id="demo-modal2" class="dialog">
-  <div class="dialog-body">
-    <div class="dialog-header">
-      <h3>Sample Modal Header 2</h3>
-    </div>
-    <div class="dialog-content text-center">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      <p>Nullam efficitur ultrices justo ac mattis. Aliquam quis mauris elementum diam tincidunt viverra vitae sit amet erat.</p>
-    </div>
-  </div>
-  <button class="btn-close">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 64 64">
-      <path d="m16 13a1 1 0 0 0-3 3l16 16-16 16a1 1 0 0 0 3 3l16-16 16 16a1 1 0 0 0 3-3l-16-16 16-16a1 1 0 0 0-3-3l-16 16z" fill="currentColor" />
-    </svg>
-  </button>
-</dialog> -->
-            <!-- <article>
+            </dialog> -->
 
-                <div class="article-wrapper">
-                    <figure>
-                        <img src="https://picsum.photos/id/1005/800/450" alt="" />
-                    </figure>
-                    <div class="article-body">
-                        <h2>This is some title</h2>
-                        <p>
-                            Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet,
-                            congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim
-                            imperdiet egestas.
-                        </p>
-                        <a href="#" class="read-more">
-                            Read more <span class="sr-only">about this is some title</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </article>
-            <article>
-
-                <div class="article-wrapper">
-                    <figure>
-                        <img src="https://picsum.photos/id/1005/800/450" alt="" />
-                    </figure>
-                    <div class="article-body">
-                        <h2>This is some title</h2>
-                        <p>
-                            Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet,
-                            congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim
-                            imperdiet egestas.
-                        </p>
-                        <a href="#" class="read-more">
-                            Read more <span class="sr-only">about this is some title</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </article>
-            <article>
-
-                <div class="article-wrapper">
-                    <figure>
-                        <img src="https://picsum.photos/id/1005/800/450" alt="" />
-                    </figure>
-                    <div class="article-body">
-                        <h2>This is some title</h2>
-                        <p>
-                            Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet,
-                            congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim
-                            imperdiet egestas.
-                        </p>
-                        <a href="#" class="read-more">
-                            Read more <span class="sr-only">about this is some title</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </article>
-            <article>
-
-                <div class="article-wrapper">
-                    <figure>
-                        <img src="https://picsum.photos/id/1005/800/450" alt="" />
-                    </figure>
-                    <div class="article-body">
-                        <h2>This is some title</h2>
-                        <p>
-                            Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet,
-                            congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim
-                            imperdiet egestas.
-                        </p>
-                        <a href="#" class="read-more">
-                            Read more <span class="sr-only">about this is some title</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </article>
-            <article>
-
-                <div class="article-wrapper">
-                    <figure>
-                        <img src="https://picsum.photos/id/1005/800/450" alt="" />
-                    </figure>
-                    <div class="article-body">
-                        <h2>This is some title</h2>
-                        <p>
-                            Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet,
-                            congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim
-                            imperdiet egestas.
-                        </p>
-                        <a href="#" class="read-more">
-
-                            Read more <span class="sr-only">about this is some title</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </article>
-            <article>
-
-                <div class="article-wrapper">
-                    <figure>
-                        <img src="https://picsum.photos/id/103/800/450" alt="" />
-                    </figure>
-                    <div class="article-body">
-                        <h2>This is some title</h2>
-                        <p>
-                            Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet,
-                            congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim
-                            imperdiet egestas.
-                        </p>
-                        <a href="#" class="read-more">
-                            Read more <span class="sr-only">about this is some title</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </article> -->
             <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">

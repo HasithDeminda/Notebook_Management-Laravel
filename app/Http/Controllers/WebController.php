@@ -106,8 +106,25 @@ class WebController extends Controller
         return view('pages.trash', compact('trashNotes'));
     }
 
-    public function editnote()
-    {
-        return view('pages.editnote');
-    }
+    // public function editnote()
+    // {
+    //     return view('pages.editnote');
+    // }
+    public function updateNote($id){
+
+         // get categories from database
+         $categories = DB::table('category')
+         ->where('status', '=', 1)
+         ->get()->toArray();
+
+            //get note details by id
+            $noteDetails = DB::table('note')
+            ->where('id', '=', $id)
+            ->first();
+
+
+        return view('pages.editnote', compact('categories', 'noteDetails'));
+}
+
+
 }

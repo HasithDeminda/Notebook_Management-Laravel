@@ -24,4 +24,5 @@ Route::get('/addnote', [WebController::class, 'addnote']) -> name('addnote');
 Route::get('/dashboard/viewnotes/{id}', [WebController::class, 'viewnotes']) -> name('viewnotes');
 Route::get('/drafts', [WebController::class, 'drafts']) -> name('drafts');
 Route::get('/trash', [WebController::class, 'trash']) -> name('trash');
-Route::get('/editnote', [WebController::class, 'editnote']) -> name('editnote');
+// Route::get('/editnote', [WebController::class, 'editnote']) -> name('editnote');
+Route::get('/update-note/{id}', [WebController::class, 'updateNote']) -> name('updateNote');

@@ -131,4 +131,38 @@ class NoteController extends Controller
              }
     }
 
+
+    public function updatenote(Request $request ,$id){
+        $customErrorMessages = [
+            'note_title.required' => 'Please add a Note Title.',
+            'category.required' => 'Please select a category.',
+            'note_image.required' => 'Please add an image.',
+            'note.required' => 'Please add a Note Text.',
+        ];
+        // dd($request->request);
+        $request->validate([
+            'note_title' => 'required',
+            'category' => 'required',
+            'note_image' => 'required',
+            'note' => 'required',
+        ], $customErrorMessages);
+
+        $updateNote = DB::table('note')
+        ->where('id', '=', $id)
+        ->update([
+            'note_title' => $request->note_title,
+            'note' => $request->note,
+            'note_image' => "https://res.cloudinary.com/dx1pvvqg7/image/upload/v1662534270/cld-sample.jpg",
+            'category_id' => $request->category,
+        ]);
+
+             if ($updateNote) {
+
+                return redirect("/drafts")->with('success', "Note updated successfully..!");
+
+             } else {
+             return back()->with('error', "Something went wrong..!")->withInput();
+             }
+
+    }
 }

@@ -53,12 +53,14 @@
                         <h5 style="display: flex; align-items: center; margin: 10px 0px;
                       "><i class="icon-folder"></i> <span class="mt-1 ml-1">{{$note->category_name}}</span></h5>
                         <div>
-                            {!! $note->note !!}
+                            {!! Str::limit(strip_tags($note->note), 200) !!}
+
                         </div>
                         <!-- ----Add edit and delete and favourites buttons here---- -->
-                        <div class="row">
+                        <div class="row mt-2">
                             <div class="col-md-6">
-                                <button class="btn btn-primary btn-sm">Edit</button>
+                                <button class="btn btn-primary btn-sm" onclick="update({{$note->id}})">Edit</button>
+
                                 <button class="btn btn-danger btn-sm" onclick="openModal(this)"
                                     data-item-id="{{ $note->id }}">Delete</button>
                                 <!-- <a href="{{URL::to('deletenote/'. $note->id)}}"><button
@@ -346,5 +348,10 @@
     function deleteItem(itemId) {
         const deleteUrl = "{{ URL::to('deletenote/') }}" + "/" + itemId;
         window.location.href = deleteUrl;
+    }
+
+    function update(itemId) {
+        const updateurl = "{{ URL::to('update-note/') }}" + "/" + itemId;
+        window.location.href = updateurl;
     }
     </script>
