@@ -39,7 +39,8 @@
                             You can use this form to add a note to your notebook!
                         </p>
 
-                        <form class="forms-sample" id="myform" action="{{ route('addnote') }}" method="POST">
+                        <form class="forms-sample" id="myform" action="{{ route('addnote') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="exampleInputName1">Note Title</label>
@@ -67,7 +68,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Image upload</label>
-                                <input type="file" name="note_image" class="file-upload-default" />
+                                <input type="file" name="note_image" class="file-upload-default" accept="image/" />
                                 <div class="input-group col-xs-12">
                                     <input type="text" class="form-control file-upload-info" disabled
                                         placeholder="Upload Image" />

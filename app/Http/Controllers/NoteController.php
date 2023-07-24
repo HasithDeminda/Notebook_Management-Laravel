@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
@@ -17,21 +18,38 @@ class NoteController extends Controller
             'category.required' => 'Please select a category.',
             'note_image.required' => 'Please add an image.',
             'note.required' => 'Please add a Note Text.',
+            'note_image.image' => 'Please upload an image.',
+            'note_image.mimes' => 'Please upload an image of type jpeg, png, jpg, gif.',
+            'note_image.max' => 'Please upload an image of maximum size 2MB.',
+
         ];
         // dd($request->request);
         $request->validate([
             'note_title' => 'required',
             'category' => 'required',
-            'note_image' => 'required',
+            'note_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // You can adjust the image validation rules as needed
             'note' => 'required',
         ], $customErrorMessages);
+
+
+
+        $imageUrl = '';
+        if ($request->hasFile('note_image')) {
+            $image = $request->file('note_image');
+            $uploadResult = cloudinary::upload($image->getRealPath(), [
+                'folder' => 'uploads', // You can change the folder where the image will be uploaded
+            ]);
+
+            $imageUrl = $uploadResult->getSecurePath(); // Get the secure URL of the uploaded image
+
+        }
 
         if($action == 'publish'){
             $note_status = 1; // 1 for published
             $newNote = DB::table('note')->insert([
                 'note_title' => $request->note_title,
                 'note' => $request->note,
-                'note_image' => "https://res.cloudinary.com/dx1pvvqg7/image/upload/v1662534270/cld-sample.jpg",
+                'note_image' => $imageUrl,
                 'note_status' => $note_status,
                 'category_id' => $request->category,
             ]);
@@ -48,7 +66,7 @@ class NoteController extends Controller
             $newNote = DB::table('note')->insert([
                 'note_title' => $request->note_title,
                 'note' => $request->note,
-                'note_image' => "https://res.cloudinary.com/dx1pvvqg7/image/upload/v1662534270/cld-sample.jpg",
+                'note_image' => $imageUrl,
                 'note_status' => $note_status,
                 'category_id' => $request->category,
             ]);
@@ -134,39 +152,50 @@ class NoteController extends Controller
 
 
     public function updatenote(Request $request ,$id){
+        // dd($request->request);
         $customErrorMessages = [
             'note_title.required' => 'Please add a Note Title.',
             'category.required' => 'Please select a category.',
-            'note_image.required' => 'Please add an image.',
             'note.required' => 'Please add a Note Text.',
+
+
         ];
         // dd($request->request);
         $request->validate([
             'note_title' => 'required',
             'category' => 'required',
-            'note_image' => 'required',
             'note' => 'required',
+
         ], $customErrorMessages);
+
+        $oldImage = DB::table('note')
+        ->where('id', '=', $id)
+        ->first();
+
+        $imageUrl = '';
+        if ($request->hasFile('note_image')) {
+            $image = $request->file('note_image');
+            $uploadResult = cloudinary::upload($image->getRealPath(), [
+                'folder' => 'uploads', // You can change the folder where the image will be uploaded
+            ]);
+
+            $imageUrl = $uploadResult->getSecurePath(); // Get the secure URL of the uploaded image
+
+        }else {
+            $imageUrl = $oldImage->note_image;
+        }
+
 
         $updateNote = DB::table('note')
         ->where('id', '=', $id)
         ->update([
             'note_title' => $request->note_title,
             'note' => $request->note,
-            'note_image' => "https://res.cloudinary.com/dx1pvvqg7/image/upload/v1662534270/cld-sample.jpg",
+            'note_image' => $imageUrl,
             'category_id' => $request->category,
         ]);
 
              if ($updateNote) {
-
-                // if($request->previous_route == 'drafts'){
-                //     return redirect("/drafts")->with('success', "Note updated successfully..!");
-                // }else if($request->previous_route == 'favourites') {
-                //     return redirect("/favourites")->with('success', "Note updated successfully..!");
-                // }else {
-                //     return redirect("/previous_route")->with('success', "Note updated successfully..!");
-                // }
-
                 return redirect($request->previous_route)->with('success', "Note updated successfully..!");
 
 
