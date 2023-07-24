@@ -97,52 +97,47 @@
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" style="
+            <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+                style="
                         overflow: hidden;
                         margin-top: -40px;
-                    "
-                aria-hidden="true">
+                    " aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content" style="
                         overflow-y: auto;
                         height: calc(100vh - 120px);
                     ">
                         <div class="modal-header">
-                        <div class="avatar ml-2">
-                            <img src="https://res.cloudinary.com/desnqqj6a/image/upload/v1690091561/7648864_lv8zvg.jpg"
-                                alt="" style="
+                            <div class="avatar ml-2">
+                                <img src="https://res.cloudinary.com/desnqqj6a/image/upload/v1690091561/7648864_lv8zvg.jpg"
+                                    alt="" style="
     width: 60px;
     height: 60px;
     border-radius: 50%;
        " />
-                        </div>
-                        <div class='col' style="margin-top:-5px">
-                            <h3 class="">Notebook Blog</h3>
-                            <h6 class="text-muted" style="display:flex; align-items:center;"><i class="icon-folder mr-2"></i> <span class="mt-1">My Notebook</span></h6>
-                       
-                        </div>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                            </div>
+                            <div class='col mt-2'>
+                                <h3 class="blog-name">Notebook Blog</h3>
+
+                            </div>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        
+
                         <div class="modal-body">
-                        <img src="https://picsum.photos/id/1011/800/450" alt="" style="width:100%"/>
-                         <div class="modal-text mt-4">
-                            ...
-                         </div>
+                            <img src="https://picsum.photos/id/1011/800/450" alt="" style="width:100%" />
+                            <div class="modal-text mt-4">
+                                ...
+                            </div>
                         </div>
-                       
+
                     </div>
                 </div>
             </div>
 
         </section>
-        <div class="pagination">
-            <ul>
-                <!--pages or li are comes from javascript -->
-            </ul>
-        </div>
+
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
         <!-- partial -->
@@ -185,37 +180,11 @@
         window.location.href = updateurl;
     }
 
-    // function openDateViewModal(button) {
-    //     const itemId = button.getAttribute('data-item-id');
-
-    //     // const viewUrl = "{{ URL::to('get-specific-note/') }}" + "/" + itemId;
-
-    //     $.ajax({
-    //         url: "{{ URL::to('get-specific-note/') }}" + "/" + itemId,
-    //         type: "GET",
-    //         dataType: "json",
-    //         success: function(response) {
-    //             console.log(response);
-    //             $('#viewModal').find('.modal-title').text(response.note_title);
-    //             $('#viewModal').find('.modal-body').text(response.note);
-    //         },
-    //         error: function(error) {
-    //             console.log(error);
-    //         }
-    //     });
-    //     $('#viewModal').modal('show');
-
-
-
-    // }
-
     function openDateViewModal(button) {
         const itemId = button.getAttribute('data-item-id');
         const viewModal = $('#viewModal');
 
-        // Clear the previous modal content to ensure proper initialization
-        // viewModal.find('.modal-title').empty();
-        // viewModal.find('.modal-body').empty();
+
 
         $.ajax({
             url: "{{ URL::to('get-specific-note/') }}" + "/" + itemId,
@@ -223,7 +192,8 @@
             dataType: "json",
             success: function(response) {
                 console.log(response);
-                viewModal.find('.modal-title').text(response.note_title);
+                viewModal.find('.blog-name').text(response.note_title);
+                viewModal.find('.modal-body').find('img').attr('src', response.note_image);
                 viewModal.find('.modal-text').html(response.note);
 
 
