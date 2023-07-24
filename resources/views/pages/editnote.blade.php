@@ -31,7 +31,9 @@
 
         <div class=" row">
             <div class="col-12 grid-margin stretch-card">
+                <div>
 
+                </div>
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Update Note</h4>
@@ -40,8 +42,10 @@
                         </p>
 
                         <form class="forms-sample" action="{{ route('updatenote', ['id' => $noteDetails->id]) }}"
-                            id="myform" method="POST">
+                            id="myform" method="POST" enctype="multipart/form-data">
                             @csrf
+                            <input type="text" class="form-control" id="exampleInputName1" placeholder="Note Title"
+                                name="previous_route" value="{{ $previousRouteName }}" hidden />
                             <div class="form-group">
                                 <label for="exampleInputName1">Note Title</label>
                                 <input type="text" class="form-control" id="exampleInputName1" placeholder="Note Title"
@@ -96,8 +100,12 @@
                                 @endif
                             </div>
                             <div class="form-group"></div>
-                            <button type="submit" class="btn btn-primary mr-2">
-                                Update Note
+                            <button type="submit" class="btn btn-primary mr-2" name="action" value="publish">
+                                Update and Publish
+
+                            </button>
+                            <button type="submit" class="btn btn-outline-primary mr-2" name="action" value="draft">
+                                Update as Draft
 
                             </button>
 

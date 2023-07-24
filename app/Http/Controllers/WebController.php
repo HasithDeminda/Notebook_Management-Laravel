@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 
 class WebController extends Controller
 {
@@ -42,18 +43,21 @@ class WebController extends Controller
                 'favoritesCount' => $favoritesCount,
             ];
 
+
       return view('pages.dashboard', compact('dashBoardData', 'categories'));
    }
 
     public function favourites()
     {
-        //get  all notes which are marked as favorites and note status is published
+        //get  all notes which are marked as favorites and note status is published and category name
         $favouriteNotes = DB::table('note')
             ->join('category', 'note.category_id', '=', 'category.id')
             ->select('note.*', 'category.category_name')
             ->where('is_favorite', '=', 1)
             ->where('note_status', '=', 1)
             ->get()->toArray();
+
+            // dd($favouriteNotes);
         return view('pages.favourites', compact('favouriteNotes'));
     }
     public function addnote()
@@ -122,8 +126,19 @@ class WebController extends Controller
             ->where('id', '=', $id)
             ->first();
 
+            $previousUrl = URL::previous();
 
-        return view('pages.editnote', compact('categories', 'noteDetails'));
+
+
+            // Parse the URL to get the path
+            $parsedUrl = parse_url($previousUrl);
+
+            // Get the path from the parsed URL
+            $previousRouteName = $parsedUrl['path'];
+
+            // dd($previousRouteName);
+
+        return view('pages.editnote', compact('categories', 'noteDetails','previousRouteName'));
 }
 
 

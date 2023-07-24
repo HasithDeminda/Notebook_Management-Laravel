@@ -44,7 +44,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/categorycard.css') }}" />
     <!-- <link rel="stylesheet" href="assets/css/modal.css" /> -->
     <link rel="stylesheet" href="{{ asset('assets/css/modal.css') }}" />
-
+    @cloudinaryJS
 </head>
 
 <body>
@@ -54,10 +54,11 @@
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
                 <a class="navbar-brand brand-logo mr-5" href="{{
             URL::to('/dashboard')
-          }}"><img src="{{ asset('assets/images/logo.svg') }}" class="mr-2" alt="logo" /></a>
+          }}"><img src="https://res.cloudinary.com/desnqqj6a/image/upload/v1690132149/Notebook_1_gzusts.png"
+                        class="mr-2" alt="logo" /></a>
                 <a class="navbar-brand brand-logo-mini" href="{{
             URL::to('/dashboard')
-          }}"><img src="{{ asset('assets/images/logo-mini.svg') }}" alt="logo" /></a>
+          }}"><img src="https://res.cloudinary.com/desnqqj6a/image/upload/v1690131623/2_ew9ofh.png" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">

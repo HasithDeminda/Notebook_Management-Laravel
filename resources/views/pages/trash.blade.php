@@ -45,7 +45,7 @@
             @foreach($trashNotes as $note)
             <article>
                 <div class="article-wrapper">
-                    <figure id="btn-show">
+                    <figure onclick="openDateViewModal(this)" data-item-id="{{ $note->id }}">
                         <img src="{{$note->note_image}}" alt="" />
                     </figure>
                     <div class="article-body">
@@ -89,192 +89,52 @@
             </article>
             @endforeach
 
-            <dialog id="demo-modal" class="dialog" style="
-    width: 100%;
-    height: 80%;
-    overflow: auto;
-                ">
-                <div class="dialog-body">
-                    <div class="dialog-header">
-                        <div class="avatar ml-2">
-                            <img src="https://res.cloudinary.com/desnqqj6a/image/upload/v1690091561/7648864_lv8zvg.jpg"
-                                alt="" style="
+            <!-- Modal -->
+            <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+                style="
+                        overflow: hidden;
+                        margin-top: -40px;
+                    " aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="
+                        overflow-y: auto;
+                        height: calc(100vh - 120px);
+                    ">
+                        <div class="modal-header">
+                            <div class="avatar ml-2">
+                                <img src="https://res.cloudinary.com/desnqqj6a/image/upload/v1690091561/7648864_lv8zvg.jpg"
+                                    alt="" style="
     width: 60px;
     height: 60px;
     border-radius: 50%;
-
        " />
+                            </div>
+                            <div class='col' style="margin-top:-5px">
+
+                                <h3 class="">Notebook Blog</h3>
+
+                                <h6 class="text-muted" style="display:flex; align-items:center;"><i
+                                        class="icon-folder mr-2"></i> <span class="mt-1 category-name">My
+                                        Notebook</span></h6>
+
+
+
+                            </div>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div class='col mt-2'>
-                            <h3 class="">Notebook Blog</h3>
-                            <h6>Published 2mins ago</h6>
+
+                        <div class="modal-body">
+                            <img src="https://picsum.photos/id/1011/800/450" alt="" style="width:100%" />
+                            <div class="modal-text mt-4">
+                                ...
+                            </div>
                         </div>
+
                     </div>
-                    <div class="dialog-content">
-                        <figure id="btn-show">
-                            <img src="https://picsum.photos/id/1011/800/450" alt="" />
-                        </figure>
-                        <p class='mt-3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec ex luctus,
-                            maximus elit quis, ultricies orci. Aliquam erat volutpat. Integer nec erat orci. Cras in
-                            arcu neque. Quisque consequat mattis lacus, ornare bibendum justo volutpat nec. Nunc
-                            sollicitudin interdum dui, in dictum tellus feugiat in. Pellentesque interdum vehicula
-                            libero, eget porttitor magna. Nullam efficitur ultrices justo ac mattis. Aliquam quis mauris
-                            elementum diam tincidunt viverra vitae sit amet erat. Lorem ipsum dolor sit amet,
-                            consectetur adipiscing elit. Donec nec ex luctus, maximus elit quis, ultricies orci. Aliquam
-                            erat volutpat. Integer nec erat orci. Cras in arcu neque. Quisque consequat mattis lacus,
-                            ornare bibendum justo volutpat nec. Nunc sollicitudin interdum dui, in dictum tellus feugiat
-                            in. Pellentesque interdum vehicula libero, eget porttitor magna. Nullam efficitur ultrices
-                            justo ac mattis. Aliquam quis mauris elementum diam tincidunt viverra vitae sit amet erat.
-                        </p>
-                    </div>
-                    <!-- <div class="dialog-footer text-right">
-      <button id="btn-show2" class="btn-modalshow">Open Modal 2</button>
-    </div> -->
                 </div>
-                <button class="btn-close">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 64 64">
-                        <path
-                            d="m16 13a1 1 0 0 0-3 3l16 16-16 16a1 1 0 0 0 3 3l16-16 16 16a1 1 0 0 0 3-3l-16-16 16-16a1 1 0 0 0-3-3l-16 16z"
-                            fill="currentColor" />
-                    </svg>
-                </button>
-            </dialog>
-            <!-- <dialog id="demo-modal2" class="dialog">
-  <div class="dialog-body">
-    <div class="dialog-header">
-      <h3>Sample Modal Header 2</h3>
-    </div>
-    <div class="dialog-content text-center">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      <p>Nullam efficitur ultrices justo ac mattis. Aliquam quis mauris elementum diam tincidunt viverra vitae sit amet erat.</p>
-    </div>
-  </div>
-  <button class="btn-close">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 64 64">
-      <path d="m16 13a1 1 0 0 0-3 3l16 16-16 16a1 1 0 0 0 3 3l16-16 16 16a1 1 0 0 0 3-3l-16-16 16-16a1 1 0 0 0-3-3l-16 16z" fill="currentColor" />
-    </svg>
-  </button>
-</dialog> -->
-            <!-- <article>
-
-                  <div class="article-wrapper">
-                    <figure>
-                      <img src="https://picsum.photos/id/1005/800/450" alt="" />
-                    </figure>
-                    <div class="article-body">
-                      <h2>This is some title</h2>
-                      <p>
-                        Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet, congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim imperdiet egestas.
-                      </p>
-                      <a href="#" class="read-more">
-                        Read more <span class="sr-only">about this is some title</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
-                          <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
-                </article>
-                <article>
-
-                    <div class="article-wrapper">
-                      <figure>
-                        <img src="https://picsum.photos/id/1005/800/450" alt="" />
-                      </figure>
-                      <div class="article-body">
-                        <h2>This is some title</h2>
-                        <p>
-                          Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet, congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim imperdiet egestas.
-                        </p>
-                        <a href="#" class="read-more">
-                          Read more <span class="sr-only">about this is some title</span>
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                          </svg>
-                        </a>
-                      </div>
-                    </div>
-                  </article>
-                  <article>
-
-                    <div class="article-wrapper">
-                      <figure>
-                        <img src="https://picsum.photos/id/1005/800/450" alt="" />
-                      </figure>
-                      <div class="article-body">
-                        <h2>This is some title</h2>
-                        <p>
-                          Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet, congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim imperdiet egestas.
-                        </p>
-                        <a href="#" class="read-more">
-                          Read more <span class="sr-only">about this is some title</span>
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                          </svg>
-                        </a>
-                      </div>
-                    </div>
-                  </article>
-                  <article>
-
-                    <div class="article-wrapper">
-                      <figure>
-                        <img src="https://picsum.photos/id/1005/800/450" alt="" />
-                      </figure>
-                      <div class="article-body">
-                        <h2>This is some title</h2>
-                        <p>
-                          Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet, congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim imperdiet egestas.
-                        </p>
-                        <a href="#" class="read-more">
-                          Read more <span class="sr-only">about this is some title</span>
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                          </svg>
-                        </a>
-                      </div>
-                    </div>
-                  </article>
-                  <article>
-
-                    <div class="article-wrapper">
-                      <figure>
-                        <img src="https://picsum.photos/id/1005/800/450" alt="" />
-                      </figure>
-                      <div class="article-body">
-                        <h2>This is some title</h2>
-                        <p>
-                          Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet, congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim imperdiet egestas.
-                        </p>
-                        <a href="#" class="read-more">
-                          Read more <span class="sr-only">about this is some title</span>
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                          </svg>
-                        </a>
-                      </div>
-                    </div>
-                  </article>
-                <article>
-
-                  <div class="article-wrapper">
-                    <figure>
-                      <img src="https://picsum.photos/id/103/800/450" alt="" />
-                    </figure>
-                    <div class="article-body">
-                      <h2>This is some title</h2>
-                      <p>
-                        Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet, congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim imperdiet egestas.
-                      </p>
-                      <a href="#" class="read-more">
-                        Read more <span class="sr-only">about this is some title</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
-                          <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
-                </article> -->
+            </div>
             <!-- Delete model -->
             <div class="modal fade" id="restoreAsPublishConfirmationModal" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -322,11 +182,6 @@
             </div>
 
         </section>
-        <div class="pagination">
-            <ul>
-                <!--pages or li are comes from javascript -->
-            </ul>
-        </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
         <!-- partial -->
@@ -375,5 +230,31 @@
             const restoreurl = "{{ URL::to('restore-draft') }}" + "/" + itemId;
             window.location.href = restoreurl;
         }
+    }
+
+    function openDateViewModal(button) {
+        const itemId = button.getAttribute('data-item-id');
+        const viewModal = $('#viewModal');
+
+
+
+        $.ajax({
+            url: "{{ URL::to('get-specific-note/') }}" + "/" + itemId,
+            type: "GET",
+            dataType: "json",
+            success: function(response) {
+                viewModal.find('.blog-name').text(response.note_title);
+                viewModal.find('.modal-body').find('img').attr('src', response.note_image);
+                viewModal.find('.modal-text').html(response.note);
+                viewModal.find('.category-name').text(response.category_name);
+
+
+                // Show the modal after updating its content
+                viewModal.modal('show');
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
     }
     </script>
