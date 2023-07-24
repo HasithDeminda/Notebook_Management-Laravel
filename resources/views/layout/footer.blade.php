@@ -47,7 +47,7 @@
 <script src="{{ asset('assets/js/pagination.js') }}"></script>
 <!-- <script src="assets/js/modal.js"></script> -->
 <script src="{{ asset('assets/js/modal.js') }}"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 <!-- End custom js for this page-->
 </body>
