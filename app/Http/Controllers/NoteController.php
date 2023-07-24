@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 
 class NoteController extends Controller
 {
@@ -158,11 +159,28 @@ class NoteController extends Controller
 
              if ($updateNote) {
 
-                return redirect("/drafts")->with('success', "Note updated successfully..!");
+                // if($request->previous_route == 'drafts'){
+                //     return redirect("/drafts")->with('success', "Note updated successfully..!");
+                // }else if($request->previous_route == 'favourites') {
+                //     return redirect("/favourites")->with('success', "Note updated successfully..!");
+                // }else {
+                //     return redirect("/previous_route")->with('success', "Note updated successfully..!");
+                // }
+
+                return redirect($request->previous_route)->with('success', "Note updated successfully..!");
+
 
              } else {
              return back()->with('error', "Something went wrong..!")->withInput();
              }
 
+    }
+
+    public function getSpecificNote($id){
+        $noteDetails = DB::table('note')
+        ->where('id', '=', $id)
+        ->first();
+
+        return response()->json($noteDetails);
     }
 }

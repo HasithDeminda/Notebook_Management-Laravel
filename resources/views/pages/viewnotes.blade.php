@@ -67,7 +67,7 @@
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-6">
-                                <button class="btn btn-primary btn-sm">Edit</button>
+                                <button class="btn btn-primary btn-sm" onclick="update({{$note->id}})">Edit</button>
                                 <button class="btn btn-danger btn-sm" onclick="openModal(this)"
                                     data-item-id="{{ $note->id }}">Delete</button>
                             </div>
@@ -92,7 +92,7 @@
 
 
 
-            <!-- <dialog id=" demo-modal" class="dialog" style="
+            <dialog id=" demo-modal" class="dialog" style="
     width: 100%;
     height: 80%;
     overflow: auto;
@@ -152,7 +152,7 @@
                             fill="currentColor" />
                     </svg>
                 </button>
-            </dialog> -->
+            </dialog>
 
             <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -226,5 +226,10 @@
     function addToUnFavorites(id) {
         const addToUnFavoritesUrl = "{{ URL::to('add-unfavorite/') }}" + "/" + id;
         window.location.href = addToUnFavoritesUrl;
+    }
+
+    function update(itemId) {
+        const updateurl = "{{ URL::to('update-note/') }}" + "/" + itemId;
+        window.location.href = updateurl;
     }
     </script>

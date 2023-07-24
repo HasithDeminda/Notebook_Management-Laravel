@@ -31,7 +31,9 @@
 
         <div class=" row">
             <div class="col-12 grid-margin stretch-card">
+                <div>
 
+                </div>
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Update Note</h4>
@@ -42,6 +44,8 @@
                         <form class="forms-sample" action="{{ route('updatenote', ['id' => $noteDetails->id]) }}"
                             id="myform" method="POST">
                             @csrf
+                            <input type="text" class="form-control" id="exampleInputName1" placeholder="Note Title"
+                                name="previous_route" value="{{ $previousRouteName }}" hidden />
                             <div class="form-group">
                                 <label for="exampleInputName1">Note Title</label>
                                 <input type="text" class="form-control" id="exampleInputName1" placeholder="Note Title"

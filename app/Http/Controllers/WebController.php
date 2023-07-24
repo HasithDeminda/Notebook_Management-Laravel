@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 
 class WebController extends Controller
 {
@@ -122,8 +123,19 @@ class WebController extends Controller
             ->where('id', '=', $id)
             ->first();
 
+            $previousUrl = URL::previous();
 
-        return view('pages.editnote', compact('categories', 'noteDetails'));
+
+
+            // Parse the URL to get the path
+            $parsedUrl = parse_url($previousUrl);
+
+            // Get the path from the parsed URL
+            $previousRouteName = $parsedUrl['path'];
+
+            // dd($previousRouteName);
+
+        return view('pages.editnote', compact('categories', 'noteDetails','previousRouteName'));
 }
 
 

@@ -16,3 +16,4 @@ Route::get('/restore-draft/{id}', [NoteController::class, 'restoredraft']) -> na
 Route::get('/add-favorite/{id}', [NoteController::class, 'addfavorite']) -> name('addfavorite');
 Route::get('/add-unfavorite/{id}', [NoteController::class, 'addUnfavorite']) -> name('addUnfavorite');
 Route::post('/updatenote/{id}', [NoteController::class, 'updatenote']) -> name('updatenote');
+Route::get('/get-specific-note/{id}', [NoteController::class, 'getSpecificNote']) -> name('getSpecificNote');
