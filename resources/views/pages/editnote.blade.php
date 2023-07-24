@@ -100,8 +100,12 @@
                                 @endif
                             </div>
                             <div class="form-group"></div>
-                            <button type="submit" class="btn btn-primary mr-2">
-                                Update Note
+                            <button type="submit" class="btn btn-primary mr-2" name="action" value="publish">
+                                Update and Publish
+
+                            </button>
+                            <button type="submit" class="btn btn-outline-primary mr-2" name="action" value="draft">
+                                Update as Draft
 
                             </button>
 

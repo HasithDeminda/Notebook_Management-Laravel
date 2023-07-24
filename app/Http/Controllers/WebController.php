@@ -43,18 +43,21 @@ class WebController extends Controller
                 'favoritesCount' => $favoritesCount,
             ];
 
+
       return view('pages.dashboard', compact('dashBoardData', 'categories'));
    }
 
     public function favourites()
     {
-        //get  all notes which are marked as favorites and note status is published
+        //get  all notes which are marked as favorites and note status is published and category name
         $favouriteNotes = DB::table('note')
             ->join('category', 'note.category_id', '=', 'category.id')
             ->select('note.*', 'category.category_name')
             ->where('is_favorite', '=', 1)
             ->where('note_status', '=', 1)
             ->get()->toArray();
+
+            // dd($favouriteNotes);
         return view('pages.favourites', compact('favouriteNotes'));
     }
     public function addnote()

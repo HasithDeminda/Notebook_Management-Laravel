@@ -116,8 +116,15 @@
     border-radius: 50%;
        " />
                             </div>
-                            <div class='col mt-2'>
-                                <h3 class="blog-name">Notebook Blog</h3>
+                            <div class='col' style="margin-top:-5px">
+
+                                <h3 class="">Notebook Blog</h3>
+
+                                <h6 class="text-muted" style="display:flex; align-items:center;"><i
+                                        class="icon-folder mr-2"></i> <span class="mt-1 category-name">My
+                                        Notebook</span></h6>
+
+
 
                             </div>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -191,10 +198,10 @@
             type: "GET",
             dataType: "json",
             success: function(response) {
-                console.log(response);
                 viewModal.find('.blog-name').text(response.note_title);
                 viewModal.find('.modal-body').find('img').attr('src', response.note_image);
                 viewModal.find('.modal-text').html(response.note);
+                viewModal.find('.category-name').text(response.category_name);
 
 
                 // Show the modal after updating its content

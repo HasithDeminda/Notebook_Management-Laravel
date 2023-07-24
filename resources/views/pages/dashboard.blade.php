@@ -80,7 +80,7 @@
                         <div class="card card-light-blue">
                             <div class="card-body">
                                 <p class="mb-4">Favourites</p>
-                                <p class="fs-30 mb-2">{{$dashBoardData['categoryCount']}}</p>
+                                <p class="fs-30 mb-2">{{$dashBoardData['favoritesCount']}}</p>
                                 <p>Last 30 days</p>
                             </div>
                         </div>
@@ -89,7 +89,7 @@
                         <div class="card card-light-danger">
                             <div class="card-body">
                                 <p class="mb-4">Archieved Notes</p>
-                                <p class="fs-30 mb-2">{{$dashBoardData['favoritesCount']}}</p>
+                                <p class="fs-30 mb-2">{{$dashBoardData['draftCount']}}</p>
                                 <p>Last 30 days</p>
                             </div>
                         </div>

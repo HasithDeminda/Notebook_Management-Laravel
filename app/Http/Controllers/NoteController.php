@@ -87,7 +87,7 @@ class NoteController extends Controller
         //update status to 0
         $deleteNote = DB::table('note')
             ->where('id', '=', $id)
-            ->update(['note_status' => 0]);
+            ->update(['note_status' => 0, 'is_favorite' => 0]);
 
         if ($deleteNote) {
             return back()->with('success', "Note deleted successfully..!");
@@ -152,7 +152,7 @@ class NoteController extends Controller
 
 
     public function updatenote(Request $request ,$id){
-        // dd($request->request);
+        //  dd($request->request);
         $customErrorMessages = [
             'note_title.required' => 'Please add a Note Title.',
             'category.required' => 'Please select a category.',
@@ -185,6 +185,12 @@ class NoteController extends Controller
             $imageUrl = $oldImage->note_image;
         }
 
+        $updateNote = null;
+        if($request->action == 'publish'){
+            $note_status = 1; // 1 for published
+        }else if ($request->action == 'draft'){
+            $note_status = 2; // 2 for draft
+        }
 
         $updateNote = DB::table('note')
         ->where('id', '=', $id)
@@ -193,7 +199,9 @@ class NoteController extends Controller
             'note' => $request->note,
             'note_image' => $imageUrl,
             'category_id' => $request->category,
+            'note_status' => $note_status
         ]);
+
 
              if ($updateNote) {
                 return redirect($request->previous_route)->with('success', "Note updated successfully..!");
@@ -206,8 +214,11 @@ class NoteController extends Controller
     }
 
     public function getSpecificNote($id){
+        //get specfi note details with category name
         $noteDetails = DB::table('note')
-        ->where('id', '=', $id)
+        ->join('category', 'note.category_id', '=', 'category.id')
+        ->select('note.*', 'category.category_name')
+        ->where('note.id', '=', $id)
         ->first();
 
         return response()->json($noteDetails);
