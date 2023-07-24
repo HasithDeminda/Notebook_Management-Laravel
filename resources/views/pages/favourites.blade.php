@@ -116,8 +116,9 @@
     border-radius: 50%;
        " />
                         </div>
-                        <div class='col mt-2'>
+                        <div class='col' style="margin-top:-5px">
                             <h3 class="">Notebook Blog</h3>
+                            <h6 class="text-muted" style="display:flex; align-items:center;"><i class="icon-folder mr-2"></i> <span class="mt-1">My Notebook</span></h6>
                        
                         </div>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
