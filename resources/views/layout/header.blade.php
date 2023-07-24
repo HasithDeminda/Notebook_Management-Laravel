@@ -44,7 +44,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/categorycard.css') }}" />
     <!-- <link rel="stylesheet" href="assets/css/modal.css" /> -->
     <link rel="stylesheet" href="{{ asset('assets/css/modal.css') }}" />
-
+    @cloudinaryJS
 </head>
 
 <body>

@@ -42,7 +42,7 @@
                         </p>
 
                         <form class="forms-sample" action="{{ route('updatenote', ['id' => $noteDetails->id]) }}"
-                            id="myform" method="POST">
+                            id="myform" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="text" class="form-control" id="exampleInputName1" placeholder="Note Title"
                                 name="previous_route" value="{{ $previousRouteName }}" hidden />
