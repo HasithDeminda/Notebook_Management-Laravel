@@ -97,23 +97,41 @@
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+            <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" style="
+                        overflow: hidden;
+                        margin-top: -40px;
+                    "
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <div class="modal-content">
+                    <div class="modal-content" style="
+                        overflow-y: auto;
+                        height: calc(100vh - 120px);
+                    ">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <div class="avatar ml-2">
+                            <img src="https://res.cloudinary.com/desnqqj6a/image/upload/v1690091561/7648864_lv8zvg.jpg"
+                                alt="" style="
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+       " />
+                        </div>
+                        <div class='col mt-2'>
+                            <h3 class="">Notebook Blog</h3>
+                       
+                        </div>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
+                        
                         <div class="modal-body">
+                        <img src="https://picsum.photos/id/1011/800/450" alt="" style="width:100%"/>
+                         <div class="modal-text mt-4">
                             ...
+                         </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
+                       
                     </div>
                 </div>
             </div>
@@ -195,8 +213,8 @@
         const viewModal = $('#viewModal');
 
         // Clear the previous modal content to ensure proper initialization
-        viewModal.find('.modal-title').empty();
-        viewModal.find('.modal-body').empty();
+        // viewModal.find('.modal-title').empty();
+        // viewModal.find('.modal-body').empty();
 
         $.ajax({
             url: "{{ URL::to('get-specific-note/') }}" + "/" + itemId,
@@ -205,7 +223,8 @@
             success: function(response) {
                 console.log(response);
                 viewModal.find('.modal-title').text(response.note_title);
-                viewModal.find('.modal-body').html(response.note);
+                viewModal.find('.modal-text').html(response.note);
+
 
                 // Show the modal after updating its content
                 viewModal.modal('show');
