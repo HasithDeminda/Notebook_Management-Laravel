@@ -8,6 +8,23 @@ use Illuminate\Support\Facades\URL;
 
 class WebController extends Controller
 {
+    //login page load function
+    public function login()
+    {
+        if (session()->has('LoggedUser') && session()->has('LoggedUserName')) {
+            return redirect('/dashboard');
+        }
+
+        return view('pages.auth.login');
+    }
+
+    //register page load function
+    public function register()
+    {
+        return view('pages.auth.register');
+    }
+
+    //dashboard page load function
    public function dashboard()
    {
         //Get all categories count
@@ -43,10 +60,10 @@ class WebController extends Controller
                 'favoritesCount' => $favoritesCount,
             ];
 
-
       return view('pages.dashboard', compact('dashBoardData', 'categories'));
    }
 
+   //favorites page load function
     public function favourites()
     {
         //get  all notes which are marked as favorites and note status is published and category name
@@ -60,6 +77,8 @@ class WebController extends Controller
             // dd($favouriteNotes);
         return view('pages.favourites', compact('favouriteNotes'));
     }
+
+    //add note page load function
     public function addnote()
     {
 
@@ -71,6 +90,8 @@ class WebController extends Controller
         return view('pages.addnote', compact('categories'));
     }
 
+
+    //view notes page load function
     public function viewnotes($id)
     {
         //get all notes by category id
@@ -86,6 +107,7 @@ class WebController extends Controller
         return view('pages.viewnotes', compact('notes', 'category'));
     }
 
+    //drafts page load function
     public function drafts()
     {
         //load all draft notes populating category by joining category table
@@ -99,6 +121,7 @@ class WebController extends Controller
     }
 
 
+    //trash page load function
     public function trash()
     {
         //load all draft notes populating category by joining category table
@@ -110,10 +133,8 @@ class WebController extends Controller
         return view('pages.trash', compact('trashNotes'));
     }
 
-    // public function editnote()
-    // {
-    //     return view('pages.editnote');
-    // }
+
+    //edit note page load function
     public function updateNote($id){
 
          // get categories from database
