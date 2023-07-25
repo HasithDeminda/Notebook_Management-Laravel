@@ -11,6 +11,10 @@ class WebController extends Controller
     //login page load function
     public function login()
     {
+        if (session()->has('LoggedUser') && session()->has('LoggedUserName')) {
+            return redirect('/dashboard');
+        }
+
         return view('pages.auth.login');
     }
 
@@ -55,7 +59,6 @@ class WebController extends Controller
                 'draftCount' => $draftCount,
                 'favoritesCount' => $favoritesCount,
             ];
-
 
       return view('pages.dashboard', compact('dashBoardData', 'categories'));
    }

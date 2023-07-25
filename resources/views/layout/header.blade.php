@@ -102,6 +102,10 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                             aria-labelledby="profileDropdown">
+                            <a class="dropdown-item" href="">
+                                <i class="ti-user text-primary"></i>
+                                <?php echo session('LoggedUserName'); ?>
+                            </a>
                             <a class="dropdown-item" href="/logout">
                                 <i class="ti-power-off text-primary"></i>
                                 Logout

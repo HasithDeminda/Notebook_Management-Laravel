@@ -97,6 +97,7 @@ class UserController extends Controller
             if(password_verify($request->password, $user->password)){
                 //if password is correct then redirect to dashboard and store user id in session
                 $request->session()->put('LoggedUser', $user->id);
+                $request->session()->put('LoggedUserName', $user->username);
                 return redirect('/dashboard');
             }else{
                 return back()->with('error', 'Invalid password!')->withInput();
