@@ -96,9 +96,7 @@ class UserController extends Controller
     }
 
     public function userlogout() {
-
         //clear session
-
         session()->flush();
 
         return redirect('/');

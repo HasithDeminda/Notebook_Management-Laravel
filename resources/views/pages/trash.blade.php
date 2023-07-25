@@ -79,7 +79,14 @@
 
                                 <button class="btn btn btn-outline-primary ml-2 btn-sm" onclick="openDraftModal(this)"
                                     data-item-id="{{ $note->id }}">Republish as draft</button>
+                            </div>
 
+
+
+                            <div class="col-md-6 d-flex justify-content-end" style="width: 100%">
+
+                                <button class="btn btn-danger btn-sm" onclick="openModaldelete(this)"
+                                    data-item-id="{{ $note->id }}"><i class="icon-trash "></i></button>
                             </div>
 
 
@@ -181,6 +188,28 @@
                 </div>
             </div>
 
+            <div class="modal fade" id="deletemodel" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Delete Confirmation</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure? you want to delete this note permanently?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-danger" id="deleteconfirmbtn">Yes</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
         </section>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
@@ -225,11 +254,22 @@
         });
 
         function restoreAsDraftItem(itemId) {
-            console.log(itemId)
 
             const restoreurl = "{{ URL::to('restore-draft') }}" + "/" + itemId;
             window.location.href = restoreurl;
         }
+    }
+
+    function openModaldelete(button) {
+        const itemId = button.getAttribute('data-item-id');
+
+        $('#deletemodel').modal('show');
+
+
+        $('#deleteconfirmbtn').on('click', function() {
+            const deleteurl = "{{ URL::to('deletepermently') }}" + "/" + itemId;
+            window.location.href = deleteurl;
+        });
     }
 
     function openDateViewModal(button) {

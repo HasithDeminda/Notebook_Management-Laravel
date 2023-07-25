@@ -223,4 +223,13 @@ class NoteController extends Controller
 
         return response()->json($noteDetails);
     }
+
+    public function deletepermently($id){
+
+        DB::table('note')
+        ->where('id', '=', $id)
+        ->delete();
+
+        return back()->with('success', "Note deleted permanently..!");
+    }
 }
