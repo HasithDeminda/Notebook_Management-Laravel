@@ -26,39 +26,61 @@
                         <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                             <div class="brand-logo">
                                 <img src="https://res.cloudinary.com/desnqqj6a/image/upload/v1690132149/Notebook_1_gzusts.png"
-                                    alt="logo">
+                                    alt="logo" />
                             </div>
-                            <h4>Hello! let's get started</h4>
-                            <h6 class="font-weight-light">Sign in to continue.</h6>
-                            <form class="pt-3">
+                            <h4>New here?</h4>
+                            <h6 class="font-weight-light">
+                                Signing up is easy. It only takes a few steps
+                            </h6>
+                            <form class="pt-3" action="{{ URL::to('/user-register') }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1"
-                                        placeholder="Username">
+                                    <input type="text" class="form-control form-control-lg" name="username"
+                                        id="exampleInputUsername1" placeholder="Username" value="{{old('username')}}" />
+                                    @if ($errors->has('username'))
+                                    <h6 class="text-danger mt-2">{{ $errors->first('username') }}</h6>
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-lg" name="email"
+                                        id="exampleInputEmail1" placeholder="Email" value="{{old('username')}}" />
+                                    @if ($errors->has('email'))
+                                    <h6 class="text-danger mt-2">{{ $errors->first('email') }}</h6>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-lg"
-                                        id="exampleInputPassword1" placeholder="Password">
+                                        id="exampleInputPassword1" placeholder="Password" name="password"
+                                        value="{{old('password')}}" />
+                                    @if ($errors->has('password'))
+                                    <h6 class="text-danger mt-2">{{ $errors->first('password') }}</h6>
+                                    @endif
                                 </div>
-                                <div class="mt-3">
-                                    <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                                        href="../../index.html">SIGN IN</a>
+                                <div class="form-group">
+                                    <input type="password" class="form-control form-control-lg"
+                                        id="exampleInputPassword1" placeholder="Confirm Password"
+                                        name="confirmPassword" />
+                                    @if ($errors->has('confirmPassword'))
+                                    <h6 class="text-danger mt-2">{{ $errors->first('confirmPassword') }}</h6>
+                                    @endif
                                 </div>
-                                <div class="my-2 d-flex justify-content-between align-items-center">
+                                <div class="mb-4">
                                     <div class="form-check">
                                         <label class="form-check-label text-muted">
-                                            <input type="checkbox" class="form-check-input">
-                                            Keep me signed in
+                                            <input type="checkbox" class="form-check-input" />
+                                            I agree to all Terms & Conditions
                                         </label>
                                     </div>
-                                    <a href="#" class="auth-link text-black">Forgot password?</a>
                                 </div>
-                                <!-- <div class="mb-2">
-                                    <button type="button" class="btn btn-block btn-facebook auth-form-btn">
-                                        <i class="ti-facebook mr-2"></i>Connect using facebook
-                                    </button>
-                                </div> -->
+                                <div class="mt-3">
+                                    <button type="submit"
+                                        class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN
+                                        UP</button>
+                                </div>
                                 <div class="text-center mt-4 font-weight-light">
-                                    Don't have an account? <a href="/register" class="text-primary">Create</a>
+                                    Already have an account?
+                                    <a href="/" class="text-primary">Login</a>
                                 </div>
                             </form>
                         </div>
@@ -69,6 +91,7 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
+
     <!-- container-scroller -->
     <!-- plugins:js -->
     <!-- <script src="../../vendors/js/vendor.bundle.base.js"></script> -->
@@ -89,5 +112,9 @@
     <script src="{{ asset('assets/js/todolist.js') }}"></script>
     <!-- endinject -->
 </body>
+
+
+
+
 
 </html>

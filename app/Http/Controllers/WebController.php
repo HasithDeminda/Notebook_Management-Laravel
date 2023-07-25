@@ -13,6 +13,11 @@ class WebController extends Controller
         return view('pages.auth.login');
     }
 
+    public function register()
+    {
+        return view('pages.auth.register');
+    }
+
    public function dashboard()
    {
         //Get all categories count
