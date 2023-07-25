@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\URL;
 
 class WebController extends Controller
 {
+    public function login()
+    {
+        return view('pages.auth.login');
+    }
+
    public function dashboard()
    {
         //Get all categories count

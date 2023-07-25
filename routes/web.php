@@ -17,7 +17,8 @@ use App\Http\Controllers\WebController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::redirect('/', '/dashboard');
+// Route::redirect('/', '/dashboard');
+Route::get('/', [WebController::class, 'login']) -> name('login');
 Route::get('/dashboard', [WebController::class, 'dashboard']) -> name('dashboard');
 Route::get('/favourites', [WebController::class, 'favourites']) -> name('favourites');
 Route::get('/addnote', [WebController::class, 'addnote']) -> name('addnote');
