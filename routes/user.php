@@ -15,3 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/user-register', [UserController::class, 'userRegister'])-> name('userRegister');
+Route::post('/user-login', [UserController::class, 'userLogin'])-> name('userLogin');
+Route::get('/logout', [UserController::class, 'userlogout'])->name('userlogout');
