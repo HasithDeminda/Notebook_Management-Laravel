@@ -9,10 +9,14 @@ use Illuminate\Support\Facades\URL;
 
 class NoteController extends Controller
 {
+
+    //add note function
     public function addnote(Request $request)
     {
-        // dd($request->request);
+        // get user button click action
         $action = $request->input('action');
+
+        //validate request
         $customErrorMessages = [
             'note_title.required' => 'Please add a Note Title.',
             'category.required' => 'Please select a category.',
@@ -23,7 +27,8 @@ class NoteController extends Controller
             'note_image.max' => 'Please upload an image of maximum size 2MB.',
 
         ];
-        // dd($request->request);
+
+
         $request->validate([
             'note_title' => 'required',
             'category' => 'required',
@@ -33,6 +38,7 @@ class NoteController extends Controller
 
 
 
+        //upload image to cloudinary
         $imageUrl = '';
         if ($request->hasFile('note_image')) {
             $image = $request->file('note_image');
@@ -44,6 +50,7 @@ class NoteController extends Controller
 
         }
 
+        //insert data into database
         if($action == 'publish'){
             $note_status = 1; // 1 for published
             $newNote = DB::table('note')->insert([
@@ -96,6 +103,7 @@ class NoteController extends Controller
         }
     }
 
+    //restore note as publish
         public function restorepublish($id)
     {
         //update status to 1
@@ -124,7 +132,6 @@ class NoteController extends Controller
     }
 
     public function addfavorite($id) {
-        // dd($id);
         //update status to 1
         $restoredNote = DB::table('note')
         ->where('id', '=', $id)
@@ -168,10 +175,14 @@ class NoteController extends Controller
 
         ], $customErrorMessages);
 
+
+        //get old image
         $oldImage = DB::table('note')
         ->where('id', '=', $id)
         ->first();
 
+
+        //upload image to cloudinary
         $imageUrl = '';
         if ($request->hasFile('note_image')) {
             $image = $request->file('note_image');

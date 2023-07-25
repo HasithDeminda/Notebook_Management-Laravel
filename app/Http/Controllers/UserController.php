@@ -8,8 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+    //user register function
     public function userRegister(Request $request)
     {
+        //validate request
         $customErrorMessages = [
             'username.required' => 'Username is required!',
             'username.min' => 'Username must be at least 3 characters!',
@@ -24,6 +26,7 @@ class UserController extends Controller
         ];
 
 
+        //validate request
         $request->validate([
             'username' => 'required|min:3|max:20|unique:user',
             'email' => 'required|email|unique:user',
@@ -43,6 +46,7 @@ class UserController extends Controller
             'password' => $hashPassword,
         ]);
 
+        //check if data inserted successfully or not
         if ($newuser) {
             return back()->with('success', 'Successfully registered!');
         } else {
@@ -51,22 +55,27 @@ class UserController extends Controller
 
     }
 
+    //user login function
     public function userLogin(Request $request){
-
+        //validate request
         $customErrorMessages = [
             'email.required' => 'Email is required!',
             'password.required' => 'Password is required!',
         ];
 
+
+        //validate request
         $request->validate([
             'email' => 'required',
             'password' => 'required|min:8|max:20',
         ],
         $customErrorMessages);
 
+        //check if email or username exists
         $emailOrUsername = $request->input('email'); // Assuming you have 'email' field in the form
 
         $user = null;
+        //check if email or username
         if (filter_var($emailOrUsername, FILTER_VALIDATE_EMAIL)) {
             // It's an email
             $user = DB::table('user')->where('email', $emailOrUsername)->first();
@@ -86,6 +95,7 @@ class UserController extends Controller
         //check password
         if($user){
             if(password_verify($request->password, $user->password)){
+                //if password is correct then redirect to dashboard and store user id in session
                 $request->session()->put('LoggedUser', $user->id);
                 return redirect('/dashboard');
             }else{
@@ -95,6 +105,8 @@ class UserController extends Controller
 
     }
 
+
+    //user logout function
     public function userlogout() {
         //clear session
         session()->flush();
